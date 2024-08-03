@@ -22,6 +22,8 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa");
         <hr>
         <a href="tambah-mahasiswa.php" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Tambah</a>
 
+        <a href="download-excel-mahasiswa.php" class="btn btn-success mb-1"><i class="fas fa-file-excel"></i> Download</a>
+
         <table class="table table-bordered table-striped mt-3" id="example">
             <thead>
                 <tr>
