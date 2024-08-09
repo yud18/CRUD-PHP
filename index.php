@@ -29,6 +29,7 @@ if ($_SESSION["level"] != 1 AND $_SESSION["level"] != 2 ){
                     <th>Nama</th>
                     <th>Jumlah</th>
                     <th>Harga</th>
+                    <th>Barcode</th>
                     <th>Tanggal</th>
                     <th>Aksi</th>
                 </tr>
@@ -42,6 +43,10 @@ if ($_SESSION["level"] != 1 AND $_SESSION["level"] != 2 ){
                     <td><?= $barang['nama']; ?></td>
                     <td><?= $barang['jumlah']; ?></td>
                     <td>Rp.<?= number_format($barang['harga'],0,',','.'); ?></td>
+                    <td>
+                        <img src="barcode.php?codetype=Code128&size=15&text=<?= $barang['barcode']; ?>&print=true" alt="barcode">
+                    </td>
+
                     <td><?= date('d-m-Y | H:i:s', strtotime($barang['tanggal'])); ?></td>
                     <td width="20%" class="text-center">
                         <a href="ubah-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-success"><i class="fas fa-edit"></i> Ubah</a>

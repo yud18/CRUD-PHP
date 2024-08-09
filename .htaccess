@@ -1,0 +1,17 @@
+#menyembunyikan list file/direktori
+Options -Indexes
+
+ServerSignature Off
+
+#meblokir akses ip
+Order Allow,Deny
+    Deny from 127.0.0.1
+Allow from all
+
+#menghilangkan ekstensi file diurl
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-d 
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php
+</IfModule> 

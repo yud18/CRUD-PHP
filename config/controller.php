@@ -22,9 +22,10 @@ function create_barang($post){
     $nama       = $post['nama'];
     $jumlah     = $post['jumlah'];
     $harga      = $post['harga'];
+    $barcode    = rand(100000,999999);
 
     //query tambah data
-    $query = "INSERT INTO barang VALUES(null,'$nama','$jumlah','$harga', current_timestamp())";
+    $query = "INSERT INTO barang VALUES(null,'$nama','$jumlah','$harga','$barcode', current_timestamp())";
 
     mysqli_query($db, $query);
 
@@ -39,9 +40,10 @@ function update_barang($post){
     $nama = $post['nama'];
     $jumlah = $post['jumlah'];
     $harga = $post['harga'];
+    $barcode    = rand(100000,999999);
 
     //query tambah data
-    $query = "UPDATE barang SET nama = '$nama', jumlah = '$jumlah', harga = '$harga' WHERE id_barang = $id_barang";
+    $query = "UPDATE barang SET nama = '$nama', jumlah = '$jumlah', harga = '$harga', barcode = '$barcode' WHERE id_barang = $id_barang";
 
     mysqli_query($db, $query);
 
@@ -68,6 +70,7 @@ function create_mahasiswa($post){
     $prodi = $post['prodi'];
     $jk = $post['jk'];
     $telepon = $post['telepon'];
+    $alamat = $post['alamat'];
     $email = $post['email'];
     $foto = upload_file();
 
@@ -76,7 +79,7 @@ function create_mahasiswa($post){
         return false;
     }
 
-    $query = "INSERT INTO mahasiswa VALUES(null,'$nama','$prodi','$jk','$telepon','$email','$foto')";
+    $query = "INSERT INTO mahasiswa VALUES(null,'$nama','$prodi','$jk','$telepon','$alamat','$email','$foto')";
 
     mysqli_query($db, $query);
 
@@ -149,6 +152,7 @@ function update_mahasiswa($post){
     $prodi = $post['prodi'];
     $jk = $post['jk'];
     $telepon = $post['telepon'];
+    $alamat = $post['alamat'];
     $email = $post['email'];
     $fotoLama = strip_tags($post['fotoLama']);
 
@@ -162,7 +166,7 @@ function update_mahasiswa($post){
     }
 
     //query tambah data
-    $query = "UPDATE mahasiswa SET nama = '$nama', prodi = '$prodi', jk = '$jk', telepon = '$telepon', email = '$email', foto = '$foto' WHERE id_mahasiswa = $id_mahasiswa";
+    $query = "UPDATE mahasiswa SET nama = '$nama', prodi = '$prodi', jk = '$jk', telepon = '$telepon',alamat = '$alamat', email = '$email', foto = '$foto' WHERE id_mahasiswa = $id_mahasiswa";
     
     mysqli_query($db, $query);
 

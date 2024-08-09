@@ -69,6 +69,11 @@ $mahasiswa = select("SELECT * FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa"
         </div>
 
         <div class="mb-3">
+        <label for="alamat" class="form-label">Alamat</label>
+        <textarea name="alamat" id="alamat"><?= $mahasiswa['alamat']; ?></textarea>
+        </div>
+
+        <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="text" class="form-control" id="email" name="email" value="<?= $mahasiswa['email']; ?>">
         </div>

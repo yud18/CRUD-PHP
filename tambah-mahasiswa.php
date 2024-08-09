@@ -62,6 +62,11 @@ if (isset($_POST['tambah'])){
         </div>
 
         <div class="mb-3">
+        <label for="alamat" class="form-label">Alamat</label>
+        <textarea name="alamat" id="alamat"></textarea>
+        </div>
+
+        <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="text" class="form-control" id="email" name="email" placeholder="Email ..." required>
         </div>
