@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 include 'layout/batas.php';
@@ -9,54 +9,128 @@ include 'layout/header.php';
 $data_barang = select("SELECT * FROM barang ORDER BY tanggal desc ");
 
 //membatasi hak akses 
-if ($_SESSION["level"] != 1 AND $_SESSION["level"] != 2 ){
-    echo "<script> 
+if ($_SESSION["level"] != 1 and $_SESSION["level"] != 2) {
+  echo "<script> 
     document.location.href = 'akun.php'
     </script>";
 }
 
 ?>
 
-    <div class="container mt-5">
-        <h1><i class="fas fa-list-ol"></i> Data Barang</h1>
-        <hr>
-        <a href="tambah-barang.php" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Tambah</a>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
 
-        <table class="table table-bordered table-striped mt-3" id="example">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Jumlah</th>
-                    <th>Harga</th>
-                    <th>Barcode</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <?php
+              // Menjalankan query untuk menghitung jumlah barang
+              $query = "SELECT COUNT(*) as total_barang FROM barang";
+              $result = select($query);
 
-            <tbody>
-                <?php $no = 1; ?>
-                <?php foreach ($data_barang as $barang) : ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $barang['nama']; ?></td>
-                    <td><?= $barang['jumlah']; ?></td>
-                    <td>Rp.<?= number_format($barang['harga'],0,',','.'); ?></td>
-                    <td>
-                        <img src="barcode.php?codetype=Code128&size=15&text=<?= $barang['barcode']; ?>&print=true" alt="barcode">
-                    </td>
+              // Mengambil hasil dari array yang dikembalikan oleh fungsi select
+              $total_barang = $result[0]['total_barang'];
+              ?>
+              <h3><?= $total_barang; ?></h3>
+              <p>Data Barang</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
 
-                    <td><?= date('d-m-Y | H:i:s', strtotime($barang['tanggal'])); ?></td>
-                    <td width="20%" class="text-center">
-                        <a href="ubah-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-success"><i class="fas fa-edit"></i> Ubah</a>
-                        <a href="hapus-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-danger" onclick="return confirm('Yakin Ingin Hapus Data ini?')"><i class="fas fa-trash-alt"></i> Hapus</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <?php
+              // Menjalankan query untuk menghitung jumlah barang
+              $query = "SELECT COUNT(*) as total_mahasiswa FROM mahasiswa";
+              $result = select($query);
+
+              // Mengambil hasil dari array yang dikembalikan oleh fungsi select
+              $total_mahasiswa = $result[0]['total_mahasiswa'];
+              ?>
+              <h3><?= $total_mahasiswa; ?></h3>
+              <p>Mahasiswa</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <?php
+              // Menjalankan query untuk menghitung jumlah barang
+              $query = "SELECT COUNT(*) as total_pengguna FROM modal";
+              $result = select($query);
+
+              // Mengambil hasil dari array yang dikembalikan oleh fungsi select
+              $total_pengguna = $result[0]['total_pengguna'];
+              ?>
+              <h3><?= $total_pengguna; ?></h3>
+              <p>Data Pengguna</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>79</h3>
+
+              <p>Jumlah Pengunjung</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <!-- Main row -->
     </div>
+    </div>
+</div>
+<!-- /.content-wrapper -->
 
 <?php include 'layout/footer.php'; ?>
-    

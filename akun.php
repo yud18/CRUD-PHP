@@ -44,16 +44,38 @@ if (isset($_POST['ubah'])){
 
 
 ?>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
 
-<div class="container mt-5">
-    <h1><i class="fas fa-user-graduate"></i> Data Akun</h1>
-    <hr>
+  <section class="content">
+    <div class="container-fluid">
+    <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tabel Data Barang</h3>
+              <?php if ($_SESSION['level'] == 1):?>
+                
+            </div>
+            <div class="card-body">
+            <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fas fa-plus-circle"></i> Tambah</button>
+                <?php endif; ?>
 
-    <?php if ($_SESSION['level'] == 1):?>
-    <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fas fa-plus-circle"></i> Tambah</button>
-    <?php endif; ?>
-
-    <table class="table table-bordered table-striped mt-3" id="example">
+    <table class="table table-bordered table-striped mt-3" id="example2">
         <thead>
             <tr>
                 <th>No</th>
@@ -75,7 +97,7 @@ if (isset($_POST['ubah'])){
                 <td><?= $akun['nama']; ?></td>
                 <td><?= $akun['username']; ?></td>
                 <td><?= $akun['email']; ?></td>
-                <td><?= $akun['password']; ?></td>
+                <td>Password Terenkripsi</td>
                 <td width="18%" class="text-center">
                     <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#modalUbah<?= $akun['no']; ?>"><i class="fas fa-edit"></i> Ubah</button>
                     <button type="button" class="btn btn-danger mb-1" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $akun['no']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
@@ -90,7 +112,7 @@ if (isset($_POST['ubah'])){
                 <td><?= $akun['nama']; ?></td>
                 <td><?= $akun['username']; ?></td>
                 <td><?= $akun['email']; ?></td>
-                <td><?= $akun['password']; ?></td>
+                <td>Password Terenkripsi</td>
                 <td width="18%" class="text-center">
                     <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#modalUbah<?= $akun['no']; ?>"><i class="fas fa-edit"></i> Ubah</button>
                     
@@ -232,7 +254,12 @@ if (isset($_POST['ubah'])){
             </div>
         </div>
     </div>
+        </div>
+</div>
+</div>
+</section>
 </div>
 <?php endforeach; ?>
 
 <?php include 'layout/footer.php'; ?>
+    

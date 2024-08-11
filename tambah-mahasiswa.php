@@ -23,11 +23,40 @@ if (isset($_POST['tambah'])){
 
 ?>
 
-<div class="container mt-5">
-        <h1>Tambah Mahasiswa</h1>
-        <br>
-        
-        <form action="" method="post" enctype="multipart/form-data">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">DATA BARANG</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><?= $title; ?></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+       
+    <section class="content">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Formulir <?= $title; ?></h3>
+    </div>
+              <!-- /.card-header -->
+    
+    <div class="card-body">
+              
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="mb-3">
         <label for="nama" class="form-label">Nama</label>
         <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama ..." required>
@@ -80,13 +109,23 @@ if (isset($_POST['tambah'])){
         </div>
         
         <button type="submit" name="tambah" class="btn btn-primary" style = "float: right;">Tambah</button>
-
+        <button class="btn btn-secondary" onclick="window.location.href='mahasiswa.php'" style="float: right; margin-right: 10px;">Kembali</button>
 
 
         </form>
-    </div>
 
-<script>
+        
+
+    
+                  
+      
+       </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <script>
     function previewImg(){
         const foto = document.querySelector('#foto');
         const imgPreview = document.querySelector('.img-preview');
@@ -100,7 +139,5 @@ if (isset($_POST['tambah'])){
     }
 
 </script>
-
-<?php
-include 'layout/footer.php';
-?>
+  
+  <?php include 'layout/footer.php'; ?>
