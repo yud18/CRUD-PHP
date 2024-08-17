@@ -14,8 +14,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="asset-admin/plugins/jquery/jquery.min.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="asset-admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -60,7 +59,7 @@
 
 <!-- asset plugin datatable untuk perhitungan tabel -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.2/js/dataTables.bootstrap5.js"></script>
 
 <!-- load font awesome -->
@@ -68,6 +67,16 @@
 
 <!-- load ckeditor -->
 <script src="https://cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+
+<!-- Include CSS Select2 -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> -->
+
+<!-- Include jQuery (jika belum ada) -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+<!-- Include JS Select2 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> -->
+
 
 <script>
     CKEDITOR.replace('alamat', {
@@ -83,18 +92,37 @@
     });
 </script>
 
+<!-- datatable client side -->
 <script>
   $(function () {
     $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+
     });
   });
+</script>
+
+<!-- datatable serverside -->
+<script>
+  $(document).ready(function() {
+    $('#serverside').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: {
+      "url": "mahasiswa-serverside.php?action=table_data",
+      "dataType": "json",
+      "type": "POST"
+    },
+    columns: [
+      {"data": "no"},
+      {"data": "nama"},
+      {"data": "prodi"},
+      {"data": "jk"},
+      {"data": "telepon"},
+      {"data": "aksi"},
+    ]
+
+    });
+});
 </script>
 
 </body>

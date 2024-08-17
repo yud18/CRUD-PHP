@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 11 Agu 2024 pada 09.36
+-- Waktu pembuatan: 17 Agu 2024 pada 19.16
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -95,6 +95,30 @@ INSERT INTO `modal` (`no`, `nama`, `username`, `email`, `password`, `level`) VAL
 (8, 'admin', 'admin', 'admin@admin.com', '$2y$10$0aJTV0wOBnLC3E8yIU9/4uaNvv7ijrt5xGs8uLkXEN.W77vuy0U36', '1'),
 (9, 'operator', 'operator', 'operator@gmail.com', '$2y$10$Cwqv9TRra2pcss1tjiLAUuOaIzanLw2g7ji6FryBKcumvEzqsJMAS', '2');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pegawai`
+--
+
+CREATE TABLE `pegawai` (
+  `no` int NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `telepon` varchar(30) NOT NULL,
+  `alamat` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `pegawai`
+--
+
+INSERT INTO `pegawai` (`no`, `nama`, `jabatan`, `email`, `telepon`, `alamat`) VALUES
+(1, 'mouse', 'adasd', 'yudaprass@gmail.com', '082397705152', 'sadasd'),
+(2, 'asdasd', 'asdas', 'a@gmail.com', '1231234', 'asdasdas'),
+(3, 'asdas', 'sadad', 'yudaprass@gmail.com', '012312312', 'sadasdasdsa');
+
 --
 -- Indexes for dumped tables
 --
@@ -118,6 +142,12 @@ ALTER TABLE `modal`
   ADD PRIMARY KEY (`no`);
 
 --
+-- Indeks untuk tabel `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`no`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -138,6 +168,12 @@ ALTER TABLE `mahasiswa`
 --
 ALTER TABLE `modal`
   MODIFY `no` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `pegawai`
+--
+ALTER TABLE `pegawai`
+  MODIFY `no` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

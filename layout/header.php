@@ -36,7 +36,9 @@ include 'config/app.php';
   <link rel="stylesheet" href="asset-admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="asset-admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="asset-admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
+  
+  <!-- jQuery -->
+  <script src="asset-admin/plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -127,6 +129,28 @@ include 'config/app.php';
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Data Mahasiswa
+              </p>
+            </a>
+          </li>
+          <?php endif; ?>
+
+          <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 3) : ?>
+          <li class="nav-item">
+            <a href="pegawai.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Data Pegawai (RealTime)
+              </p>
+            </a>
+          </li>
+          <?php endif; ?>
+
+          <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 3) : ?>
+          <li class="nav-item">
+            <a href="email.php" class="nav-link">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Kirim Email (PHPMailer)
               </p>
             </a>
           </li>

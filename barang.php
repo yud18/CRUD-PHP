@@ -15,6 +15,16 @@ if ($_SESSION["level"] != 1 and $_SESSION["level"] != 2) {
     </script>";
 }
 
+if (isset($_POST['filter'])) {
+  $tgl_awal = strip_tags($_POST['tgl_awal'] . " 00:00:00");
+  $tgl_akhir = strip_tags($_POST['tgl_akhir'] . " 23:59:59");
+
+  // QUERY FILTER DATA
+  $data_barang = select("SELECT * FROM barang WHERE tanggal BETWEEN '$tgl_awal' AND '$tgl_akhir' ORDER BY id_barang DESC");
+} else {
+  $data_barang = select("SELECT * FROM barang ORDER BY id_barang DESC");
+}
+
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -48,8 +58,14 @@ if ($_SESSION["level"] != 1 and $_SESSION["level"] != 2) {
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+            <a href="tambah-barang.php" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Tambah</a>
+
+            <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#modalFilter">
+            <i class="fas fa-search"></i> Filter Data
+            </button>
+            
               <table id="example2" class="table table-bordered table-hover">
-                <a href="tambah-barang.php" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Tambah</a>
+                
                 <thead>
                   <tr>
                     <th>No</th>
@@ -91,5 +107,38 @@ if ($_SESSION["level"] != 1 and $_SESSION["level"] != 2) {
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<!-- modal filter -->
+<!-- Modal -->
+<div class="modal fade" id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-search"></i> Filter Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="tgl_awal">Tanggal Awal</label>
+                        <input type="date" name="tgl_awal" id="tgl_awal" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tgl_akhir">Tanggal Akhir</label>
+                        <input type="date" name="tgl_akhir" id="tgl_akhir" class="form-control">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary" name="filter">Simpan</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include 'layout/footer.php'; ?>

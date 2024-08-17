@@ -4,14 +4,21 @@ session_start();
 
 include 'config/app.php';
 
+
 //cek apakah tombol login di tekan
 if (isset($_POST['login'])){
     // input username dan password
     $username = mysqli_real_escape_string($db, $_POST['username']);  
     $password = mysqli_real_escape_string($db, $_POST['password']);
+    
+    $secret_key = "6LfB_igqAAAAALOrZnDc6fvJJBmp5-2bs7E_CJaa";
 
-    //check username
-    $result = mysqli_query($db,"SELECT * FROM modal WHERE username = '$username'");
+    $verifikasi = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='. $secret_key . '&response=' . $_POST['g-recaptcha-response']);
+    
+    $response = json_decode($verifikasi);
+
+    if($response->success){
+      $result = mysqli_query($db,"SELECT * FROM modal WHERE username = '$username'");
 
     //jika ada usernya
     if(mysqli_num_rows($result) == 1){
@@ -27,11 +34,18 @@ if (isset($_POST['login'])){
           
           header("Location: index.php");
           exit;
+      } else {
+        $error = true;
       }
-    }
-    //jika tidak ada usernya/login salah
-    $error = true;
+    } 
+
+    } else {
+      
+    $errorRecaptcha = true;
+  }
+      
 }
+    
 
 ?>
 
@@ -95,6 +109,12 @@ if (isset($_POST['login'])){
     </div>
     <?php endif; ?>
 
+    <?php if (isset($errorRecaptcha)) : ?>
+    <div class="alert alert-danger text-danger">
+      <b>Recaptcha Tidak Valid</b>
+    </div>
+    <?php endif; ?>
+
     <div class="form-floating">
       <input type="text" name="username"  class="form-control" id="floatingInput" placeholder="Username..." required>
       <label for="floatingInput">Username</label>
@@ -103,12 +123,15 @@ if (isset($_POST['login'])){
       <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
       <label for="floatingPassword">Password</label>
     </div>
-
+    <div class="form-floating">
+    <div class="g-recaptcha" data-sitekey="6LfB_igqAAAAAMgvXt_jAvWkN-ks7CLs1MKq5juE"></div>
+    </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit" name="login">Login</button>
     <p class="mt-5 mb-3 text-muted">Copyright &copy; Yuda Prasetia <?= date('Y') ?></p>
   </form>
 </main>
 
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
     
   </body>
